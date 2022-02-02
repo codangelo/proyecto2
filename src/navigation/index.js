@@ -1,21 +1,40 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/stack';
-import Categories from '../screens/categories/index';
-import Detail from '../screens/detail/index'
-import Products from '../screens/products/index'
+import ShopNavigation from './shop/index'
+import CartNavigation from './cart/index'
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs'
+import Icon from 'react-native-ionicons'
 
 
-const Stack = createNativeStackNavigator()
+const BottomTabs = createBottomTabNavigator()
 
 const AppNavigation = () => {
     return(
         <NavigationContainer>
-            <Stack.Navigator initialRouteName='Categories'>
-                <Stack.Screen name="Categories" component= {Categories} />
-                <Stack.Screen name="Products" component= {Products} />
-                <Stack.Screen name="Detail" component= {Detail} />
-            </Stack.Navigator>
+            <BottomTabs.Navigator screenOptions={{
+                headerShown: false,
+            }} initialRouteName='Shop'>
+                <BottomTabs.Screen 
+                name='Shop' 
+                component={ShopNavigation}
+                options= {{
+                    tabBarIcon: ({ focused }) => {
+                        return(
+                            <Icon name='home' size={30}/>
+                        )
+                    }
+                    
+                }}
+                   />
+                <BottomTabs.Screen 
+                name='Cart' 
+                component={CartNavigation}  
+                options= {{
+                    tabBarIcon: ({ focused }) => (
+                        <Icon name='cart' size={30}/>
+                    )
+                }}/>
+            </BottomTabs.Navigator>
         </NavigationContainer>
     )
 }
