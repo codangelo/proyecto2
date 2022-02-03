@@ -5,14 +5,16 @@ import {
   StyleSheet
 } from 'react-native';
 import AppNavigation from './src/navigation/index'
+import { Provider } from 'react-redux'
+import store from './src/store/index'
 
 
 
 const App = () => {
   return (
-    <SafeAreaView style={styles.container}>
+    <Provider store={store}>
       <AppNavigation/>
-    </SafeAreaView>
+    </Provider>
   );
 };
 

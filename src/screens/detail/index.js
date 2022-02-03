@@ -6,15 +6,17 @@ import {
   Button,
 } from 'react-native';
 import styles from './style'
+import {useSelector} from 'react-redux'
 
 
 
-
-const Detail = ({navigation}) => {
+const Detail = ({navigation, route}) => {
+  const product = useSelector(state => state.products.selected)
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.container}>
-        <Text>Detail</Text>
+        <Text>{product.name}</Text>
+        <Text>{product.description}</Text>
         <Button title="Volver" onPress={() => navigation.navigate('Categories')}/>
       </View>
     </SafeAreaView>
